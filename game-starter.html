@@ -1,0 +1,60 @@
+<html><head><script>
+myTimer = null
+step = 11
+alienJump = null
+
+function move(){
+
+	step++
+	if(step >= 30){
+		step = 0
+	}
+
+	var img = document.getElementById('x')
+	img.style.left = parseInt(img.style.left)+1+'px'
+	img.src='images/alien/alienrwalk' + step + '.gif'
+}
+
+function jump(){
+
+	var img = document.getElementById('x')
+	img.style.top = parseInt(img.style.top)+-1+'px'
+}
+
+onload=function(){
+	var img = document.getElementById('x')
+	
+	img.onclick=function(){
+		if(myTimer == null){
+			// not running; let's start a timer
+			myTimer = setInterval(move, 10)
+		}else{
+			// timer is already running; let's stop it 
+			clearInterval(myTimer)
+			myTimer = null
+		}
+	}
+}
+
+onclick=function(){
+	var im = document.getElementById('btn')
+
+	btn.onclick=function(){
+	if(alienJump == null){
+		alienJump = setInterval(jump, 10)
+	}else{
+		clearInterval(alienJump)
+		alienJump = null
+		}
+
+	}
+}
+
+</script>
+</head>
+<body>
+	<img src="images/alien/alienrwalk11.gif" id="x" 
+	     style="position:absolute; left:12px; top:100px">
+	<button id="btn">Jump</button>
+</body>
+</html>
