@@ -9,9 +9,8 @@
 var myTimer = null;
 var step = 1;
 var counter = 0;
-var alienJump = false;
 var maxHeight = 10;
-
+var isJumping = false;
 
 //can't get the offsetWidth to work atm 
 //suppose to limit the browser window and resize it 
@@ -39,6 +38,7 @@ var maxHeight = 10;
 
 
 
+
 //resizing trial #2
 
 var winWidth = window.innerWidth;
@@ -59,6 +59,7 @@ console.log ("why")
 
 // end of resizing 
 
+
 function move(){
 
 	step++
@@ -69,20 +70,23 @@ function move(){
 	var img = document.getElementById('x')
 	img.style.left = parseInt(img.style.left)+1+'px'
 
-    if (alienJump === false){
+    
+    //alien's feet is moving only when he is on the ground
+    if (isJumping === false){
         img.src='alien-images/alienrwalk' + step + '.gif'
     }
 }
 
+    //makes alien jump
 function jump(){
 
     counter++
     
-    alienJump = true;
+    isJumping = true;
     
     if (counter == maxHeight * 2){
         counter = 0;
-        alienJump = false;
+        isJumping = false;
         clearInterval(jumpTimer);
         return;
     }
@@ -91,19 +95,18 @@ function jump(){
     }else{
         img.style.top = parseInt(img.style.top)+counter-maxHeight+'px'
     }
-    
-	
+
 }
 
     
     
 onload=function(){
-
+    //selects img
 	img = document.getElementById('x')
-    
+    //selects btn
     jbtn = document.getElementById('btn')
 
-	
+	//starts and stops alien
 	img.onclick=function(){
 		if(myTimer == null){
 			// not running; let's start a timer
@@ -115,16 +118,24 @@ onload=function(){
 		}
 	}
 
-    
+    //makes alien jump
 	jbtn.onclick=function(){
-        
-		jumpTimer = setInterval(jump, 50)
 
-	 }
+        //only when he is on the ground
+        if(!isJumping){
+        jumpTimer = setInterval(jump, 50)
+        }
+    }
 }
 
-
-
 </script>
+
+</head>
+<body>
+	<div class="container" id="gameContainer">
+		<img src="alien-images/alienrwalk1.gif" id="x" style="position:absolute; left:12px; top:100px">
+		<button id="btn">Jump</button>
+	</div>
+
 </body>
 </html>
