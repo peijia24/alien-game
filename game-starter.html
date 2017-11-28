@@ -1,18 +1,13 @@
 <html><head>
-</head>
-<body >
-	<div class="container" id="gameContainer">
-		<img src="alien-images/alienrwalk1.gif" id="x" style="position:absolute; left:12px; top:100px">
-		<button id="btn">Jump</button>
-	</div>
+
 <script>
 var myTimer = null;
-// var step = 1;
 var step = 0;
 var counter = 0;
 var maxHeight = 10;
 var isJumping = false;
 var img = document.getElementById('x');
+
 
 
 // end of resizing 
@@ -22,19 +17,13 @@ function move(){
 	var img = document.getElementById('x');
 	img.style.left = parseInt(img.style.left)+1+'px'
 
+
 	step++
 	if(step >= 30){
 		step = 0;
 	}
 
-    //alien's feet is moving only when he is on the ground
-    if (isJumping === false){
-        img.src='alien-images/alienrwalk' + step + '.gif'
-    }
 
-
-
-}
 
     //makes alien jump
 function jump(){
@@ -91,10 +80,10 @@ onload=function(){
 
 </head>
 <body>
-	<!-- <div class="container" id="gameContainer">
+	 <div class="container" id="gameContainer">
 		<img src="alien-images/alienrwalk1.gif" id="x" style="position:absolute; left:12px; top:100px">
 		<button id="btn">Jump</button>
-	</div> -->
+	</div> 
 
 </body>
 </html>
